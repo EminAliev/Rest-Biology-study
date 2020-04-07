@@ -58,6 +58,10 @@ public class UsersServiceImpl implements UsersService {
         usersRepository.deleteById(userId);
     }
 
+    @Override
+    public User getUserbyId(Long userId) {
+        return usersRepository.getOne(userId);
+    }
 
 
 }

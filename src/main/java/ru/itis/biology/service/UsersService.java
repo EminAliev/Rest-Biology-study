@@ -21,4 +21,6 @@ public interface UsersService {
 
     void deleteUser(Long userId);
 
+    User getUserbyId(Long userId);
+
 }
