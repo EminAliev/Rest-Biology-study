@@ -19,4 +19,6 @@ public interface UsersService {
 
     User getUserByAuthentication(Authentication authentication);
 
+    void deleteUser(Long userId);
+
 }
