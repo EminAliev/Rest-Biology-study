@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api/news")
 public class NewsRestController {
 
     @Autowired
@@ -25,12 +26,12 @@ public class NewsRestController {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/api/news")
+    @GetMapping
     public ResponseEntity<List<News>> getPosts() {
         return new ResponseEntity<>(newsService.findAllNews(), HttpStatus.OK);
     }
 
-    @GetMapping("/api/news/{news-id}")
+    @GetMapping("/{news-id}")
     public ResponseEntity<Map<News, List<Comment>>> getConcreteNewsPage(@PathVariable("news-id") Long newsId) {
         News news = newsService.findByID(newsId).get();
         List<Comment> commentList = commentService.getComments(newsId);
@@ -41,7 +42,7 @@ public class NewsRestController {
 
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/api/comment/{news_id}")
+    @PostMapping("/comment/{news-id}")
     public ResponseEntity<?> setCommentNewsPage(@RequestParam(value = "text") String text, @PathVariable("news-id") Long newsId) {
         CommentDto commentDto = CommentDto.builder()
                 .text(text)
