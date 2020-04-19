@@ -22,20 +22,4 @@ public class QuestionRestController {
     public ResponseEntity<List<Question>> getProduct(@PathVariable("test-id") Long testId) {
         return ResponseEntity.ok(questionService.getTestsByThemeId(testId));
     }
-
-    @PostMapping("/submit")
-    public ResponseEntity<?> submit(HttpServletRequest request) {
-        int score = 0;
-        String[] questionIds = request.getParameterValues("questionId");
-        for (String questionId : questionIds) {
-            long answerIdCorrect = questionService.findCorrectAnswerId(Long.parseLong(questionId));
-            if (answerIdCorrect == Long.parseLong(request.getParameter("question_" + questionId))) {
-                score++;
-            }
-        }
-        request.setAttribute("score", score);
-        return ResponseEntity.ok(request);
-    }
-
-
 }
