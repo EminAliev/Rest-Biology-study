@@ -39,7 +39,7 @@ public class User {
     private String confirmCode;
 
     @OneToMany(mappedBy = "user")
-    @Where(clause = "active = true")
+    @Where(clause = "actual = true")
     private List<Comment> activeComments;
 
 

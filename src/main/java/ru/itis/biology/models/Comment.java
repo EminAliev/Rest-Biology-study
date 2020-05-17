@@ -30,4 +30,6 @@ public class Comment {
     private News news;
 
     private Date createdDate;
+
+    private Boolean actual;
 }
