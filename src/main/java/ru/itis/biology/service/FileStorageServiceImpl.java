@@ -56,8 +56,6 @@ public class FileStorageServiceImpl implements FileStorageService {
 
     @Override
     public String saveImage(Authentication authentication, MultipartFile file) {
-        //imagesFilesValidator.validate(file);
-        // TODO: проверять картинка или нет(в utils класс создать)
         FileInfo fileInfo = fileStorageUtil.convertFromMultipart(file);
         fileInfoRepository.save(fileInfo);
         fileStorageUtil.copyToStorage(file, fileInfo.getStorageFileName());

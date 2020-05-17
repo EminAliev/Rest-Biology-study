@@ -4,9 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,6 +37,11 @@ public class User {
     private Role role;
 
     private String confirmCode;
+
+    @OneToMany(mappedBy = "user")
+    @Where(clause = "active = true")
+    private List<Comment> activeComments;
+
 
     @OneToOne(mappedBy = "user")
     private FileInfo image;
